@@ -79,18 +79,18 @@ module toy_cpu (
     );
 
     always @(posedge clk) begin
-        if (!rst_n) begin
+        if (!rst_n) begin //reset all values when reset is set to a zero
             acc <= 8'h00;
             ir <= 8'h00;
             out_r <= 8'h00;
-        end else if (exec) begin
-            ir <= instr;
+        end else if (exec) begin 
+            ir <= instr; //storing the instruction being executed
             acc <= alu_out;
-            if (op == 3'b011 || op == 3'b110)
+            if (op == 3'b011 || op == 3'b110) //store and acc are the same operation as mentioned in the file
                 out_r <= acc;
         end
     end
 
-    assign out_data = out_r;
+    assign out_data = out_r; //output value 
 
 endmodule

@@ -7,13 +7,13 @@ module execution_unit (
     output reg halted
 );
 
-    assign exec = run & ~halted;
+    assign exec = run & ~halted; //execute next instruction if NOT halted and run is turned high
 
     always @(posedge clk) begin
         if (!rst_n)
             halted <= 1'b0;
-        else if (exec && HALT)
-            halted <= 1'b1;
+        else if (exec && HALT) //if you were to receive the halt instruction
+            halted <= 1'b1; 
     end
 
 endmodule

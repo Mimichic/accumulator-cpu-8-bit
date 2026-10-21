@@ -13,12 +13,12 @@ module program_counter (
     always @(*) begin
         pc_n = pc + 3'd1;
         case (op)
-            3'b100: pc_n = target;
-            3'b101: begin
+            3'b100: pc_n = target; //Jump instruction
+            3'b101: begin //jump if zero
                 if (zero_flag)
                     pc_n = target;
             end
-            3'b111: pc_n = pc;
+            3'b111: pc_n = pc; //halt 
             default: pc_n = pc + 3'd1;
         endcase
     end
